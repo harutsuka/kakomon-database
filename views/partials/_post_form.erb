@@ -55,4 +55,18 @@
         });
     </script>
 </div>
-
+            
+<script>
+    const modal = document.getElementById('modal');
+    document.getElementById("upload_widget").addEventListener("click", function() {
+        modal.style.display = 'block';
+    });
+    document.getElementById('closeModal').addEventListener("click", function() {
+        modal.style.display = 'none';
+    });
+    modal.addEventListener('click', (event) => {
+        if(event.target.closest('#modal-container') == null) {
+            modal.style.display = 'none';
+        }
+    });
+</script>
