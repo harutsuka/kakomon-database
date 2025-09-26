@@ -69,13 +69,14 @@
 }
 .file-selector {
   text-align: center;
-  height: 150px;
+  height: 300px;
   background-color: #efefef;
   border-radius: 10px;
   border: 1px solid;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 .modal-buttons {
   text-align: center;
@@ -127,4 +128,26 @@ label input {
 
 p {
   margin-bottom: 3px;
+}
+
+#fileList {
+  margin-top: 0.5rem;
+  list-style: none;
+  padding: 0;
+}
+
+#fileList li {
+  margin: 0.25rem 0;
+}
+
+#fileList a {
+  color: #1a73e8; /* 青色リンク */
+  text-decoration: underline; /* 下線付き */
+  cursor: pointer;
+  font-weight: 500;
+}
+
+#fileList a:hover {
+  color: #0c47a1; /* ホバーで濃い青に */
+  text-decoration-thickness: 2px; /* 下線を太く */
 }

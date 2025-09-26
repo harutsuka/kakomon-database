@@ -12,5 +12,5 @@ class Category < ActiveRecord::Base
 end
 
 class Image < ActiveRecord::Base
-  belongs_to :posts
+  belongs_to :post
 end

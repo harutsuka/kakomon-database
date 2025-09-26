@@ -6,13 +6,13 @@ require 'sinatra/activerecord'
 require './models'
 
 before do 
-    Dotenv.load
-    Cloudinary.config do |config|
-        config.cloud_name = ENV['CLOUD_NAME']
-        config.api_key  = ENV['CLOUDINARY_API_KEY']
-        config.api_secret = ENV['CLOUDINARY_API_SECRET']
-        config.secure  = true
-    end 
+  Dotenv.load
+  Cloudinary.config do |config|
+    config.cloud_name = ENV['CLOUD_NAME']
+    config.api_key  = ENV['CLOUDINARY_API_KEY']
+    config.api_secret = ENV['CLOUDINARY_API_SECRET']
+    config.secure  = true
+  end
 end
 
 helpers do
@@ -31,7 +31,7 @@ get "/" do
   grade = params[:grade] || 0
   course = params[:course] || 0
   term = params[:term] || 0
-  @posts = Post.where(grade:grade,course:course,term:term)
+  @posts = Post.where(grade:grade, course:course, term:term)
   erb :index
 end
 
@@ -39,12 +39,13 @@ post "/post" do
   main_image_urls = []
 
   if params[:uploaded_image_main]
-    params[:uploaded_image_main].each do |image|
-      tempfile = image[:tempfile]
-      upload = Cloudinary::Uploader.upload(tempfile.path)
-      main_image_urls << upload['url']
-    end
+  Array(params[:uploaded_image_main]).each do |image|
+    tempfile = image[:tempfile]
+    upload = Cloudinary::Uploader.upload(tempfile.path)
+    main_image_urls << upload['url']
   end
+end
+
 
   if params[:uploaded_image_sub]
     image = params[:uploaded_image_sub]
