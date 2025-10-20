@@ -7,11 +7,11 @@ services:
     autoDeploy: true
     buildCommand: bundle install
     envVars:
-  	- key: RACK_ENV
+      - key: RACK_ENV
         value: production
-  	- key: SINATRA_ENV
+      - key: SINATRA_ENV
         value: production
-  	- key: DATABASE_URL
+      - key: DATABASE_URL
         fromDatabase:
           name: kakomon-database-db
           property: connectionString
