@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: kakomon-database
+    env: ruby
+    repo: https://github.com/harutsuka/kakomon-database
+    branch: main
+    autoDeploy: true
+    buildCommand: bundle install
+    envVars:
+  	- key: RACK_ENV
+        value: production
+  	- key: SINATRA_ENV
+        value: production
+  	- key: DATABASE_URL
+        fromDatabase:
+          name: kakomon-database-db
+          property: connectionString
+
+databases:
+  - name: kakomon-database-db
+    databaseName: kakomon_database
+    user: kakomon_user
