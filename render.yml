@@ -3,7 +3,7 @@ services:
     name: kakomon-database
     runtime: ruby
     buildCommand: bundle install && bundle exec rake db:migrate
-    startCommand: bundle exec rackup -o 0.0.0.0 -p $PORT
+    startCommand: bundle exec ruby app.rb -o 0.0.0.0 -p $PORT
     envVars:
       - key: DATABASE_URL
         fromDatabase:
