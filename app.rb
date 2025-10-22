@@ -1,15 +1,13 @@
-require 'logger'
 require 'bundler/setup'
 Bundler.require
 require 'sinatra/reloader' if development?
-
-require 'sinatra/activerecord'
-require './models'
 
 # Database configuration
 configure do
   set :database, ENV['DATABASE_URL'] || 'postgres://localhost/kakomon_database'
 end
+
+require './models'
 
 before do
   Dotenv.load if development?
