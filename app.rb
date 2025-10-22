@@ -1,6 +1,6 @@
+require 'logger'
 require 'bundler/setup'
 Bundler.require
-require 'logger'
 require 'sinatra/reloader' if development?
 
 require 'sinatra/activerecord'
