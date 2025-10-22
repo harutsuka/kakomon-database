@@ -5,7 +5,7 @@ require 'sinatra/reloader' if development?
 require 'sinatra/activerecord'
 require './models'
 
-before do 
+before do
   Dotenv.load
   Cloudinary.config do |config|
     config.cloud_name = ENV['CLOUD_NAME']
@@ -14,6 +14,10 @@ before do
     config.secure  = true
   end
 end
+
+set :database_file, "config/database.yml"
+set :bind, "0.0.0.0"
+set :port, ENV.fetch("PORT", 3000)
 
 helpers do
   def gradeList
@@ -69,7 +73,7 @@ end
       sub_image_url: sub_image_url,
     )
   end
-  
+
   redirect '/'
 end
 

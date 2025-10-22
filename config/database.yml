@@ -1,10 +1,11 @@
 default_env: &default
   adapter: postgresql
   encoding: unicode
-  database: s_todo
 
 development:
   <<: *default
+  database: s_todo
 
 production:
   <<: *default
+  url: <%= ENV.fetch("DATABASE_URL") %>
