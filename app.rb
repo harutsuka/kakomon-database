@@ -5,8 +5,13 @@ require 'sinatra/reloader' if development?
 require 'sinatra/activerecord'
 require './models'
 
+# Database configuration
+configure do
+  set :database, ENV['DATABASE_URL'] || 'postgres://localhost/kakomon_database'
+end
+
 before do
-  Dotenv.load
+  Dotenv.load if development?
   Cloudinary.config do |config|
     config.cloud_name = ENV['CLOUD_NAME']
     config.api_key  = ENV['CLOUDINARY_API_KEY']
@@ -15,7 +20,6 @@ before do
   end
 end
 
-set :database_file, "config/database.yml"
 set :bind, "0.0.0.0"
 set :port, ENV.fetch("PORT", 3000)
 

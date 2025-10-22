@@ -2,8 +2,9 @@ services:
   - type: web
     name: kakomon-database
     runtime: ruby
-    buildCommand: bundle install && bundle exec rake db:migrate
-    startCommand: bundle exec ruby app.rb -o 0.0.0.0 -p $PORT
+    # Bundler を先に 2.7.2 で入れてから、そのバージョンで実行
+    buildCommand: gem install bundler -v 2.7.2 && bundle _2.7.2_ install && bundle _2.7.2_ exec rake db:migrate
+    startCommand: bundle _2.7.2_ exec ruby app.rb -o 0.0.0.0 -p $PORT
     envVars:
       - key: DATABASE_URL
         fromDatabase:
