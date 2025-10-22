@@ -2,7 +2,7 @@ services:
   - type: web
     name: kakomon-database
     runtime: ruby
-    buildCommand: bundle install && bundle exec rake db:migrate
+    buildCommand: gem install bundler:2.6.2 && bundle install && bundle exec rake db:migrate
     startCommand: bundle exec ruby app.rb -o 0.0.0.0 -p $PORT
     envVars:
       - key: DATABASE_URL
