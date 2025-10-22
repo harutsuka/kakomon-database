@@ -1,6 +1,7 @@
 ruby '3.2.3'
 source 'https://rubygems.org'
 
+gem 'logger', '1.5.3'
 gem 'sinatra', '~> 2.1'
 gem 'sinatra-contrib', '~> 2.1'
 gem 'webrick', '~> 1.7'
