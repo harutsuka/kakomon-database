@@ -3,9 +3,12 @@ require 'bundler/setup'
 Bundler.require
 require 'sinatra/reloader' if development?
 
+# require 'sinatra'
+require 'sinatra/activerecord'
+
 register Sinatra::ActiveRecordExtension
 
-# Renderが自動的に設定する DATABASE_URL を使用
+# Goの os.Getenv("DATABASE_URL") と同じ
 set :database, ENV.fetch('DATABASE_URL')
 
 before do
