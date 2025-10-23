@@ -2,7 +2,7 @@ require 'logger'
 require 'bundler/setup'
 
 # sinatra-activerecordを除外してBundler.require
-Bundler.require(:default, ENV.fetch('RACK_ENV', 'development').to_sym)
+# Bundler.require(:default, ENV.fetch('RACK_ENV', 'development').to_sym)
 
 require 'sinatra/reloader' if development?
 
