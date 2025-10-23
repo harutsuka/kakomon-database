@@ -1,12 +1,17 @@
 require 'logger'
 require 'bundler/setup'
-Bundler.require
+
+# sinatra-activerecordを除外してBundler.require
+Bundler.require(:default, ENV.fetch('RACK_ENV', 'development').to_sym)
+
 require 'sinatra/reloader' if development?
 
-require 'sinatra/activerecord'
+# ActiveRecordを先に読み込み
+require 'active_record'
 
-# DATABASE_URLを直接設定（開発環境用にデフォルト値も設定）
-set :database, ENV['DATABASE_URL'] || 'postgresql://localhost/s_todo'
+# データベース接続を手動で設定
+db_config = ENV['DATABASE_URL'] || 'postgresql://localhost/s_todo'
+ActiveRecord::Base.establish_connection(db_config)
 
 require './models'
 
