@@ -9,7 +9,10 @@ require 'sinatra/activerecord'
 register Sinatra::ActiveRecordExtension
 
 # Goの os.Getenv("DATABASE_URL") と同じ
-set :database, ENV.fetch('DATABASE_URL')
+set :database, {
+  adapter: 'postgresql',      # ← これが無いと今回のエラー
+  url:     ENV.fetch('DATABASE_URL')
+}
 
 before do
   Dotenv.load if development?
