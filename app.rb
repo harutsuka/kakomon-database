@@ -9,6 +9,7 @@ require 'sinatra'
 puts "RACK_ENV is #{ENV['RACK_ENV'].inspect}"
 puts "----------------------------------"
 require 'sinatra/reloader' if development?
+require './models.rb'
 
 # ActiveRecordを先に読み込み
 require 'active_record'
@@ -16,8 +17,6 @@ require 'active_record'
 # データベース接続を手動で設定
 db_config = ENV['DATABASE_URL'] || 'postgresql://localhost/s_todo'
 ActiveRecord::Base.establish_connection(db_config)
-
-require './models'
 
 before do
   Dotenv.load if development?
