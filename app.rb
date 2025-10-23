@@ -4,6 +4,8 @@ require 'bundler/setup'
 # sinatra-activerecordを除外してBundler.require
 # Bundler.require(:default, ENV.fetch('RACK_ENV', 'development').to_sym)
 
+require 'sinatra'
+
 puts "RACK_ENV is #{ENV['RACK_ENV'].inspect}"
 puts "----------------------------------"
 require 'sinatra/reloader' if development?
