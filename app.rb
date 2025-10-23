@@ -3,16 +3,12 @@ require 'bundler/setup'
 Bundler.require
 require 'sinatra/reloader' if development?
 
-# require 'sinatra'
 require 'sinatra/activerecord'
 
-register Sinatra::ActiveRecordExtension
+# DATABASE_URLを直接設定（開発環境用にデフォルト値も設定）
+set :database, ENV['DATABASE_URL'] || 'postgresql://localhost/s_todo'
 
-# Goの os.Getenv("DATABASE_URL") と同じ
-set :database, {
-  adapter: 'postgresql',      # ← これが無いと今回のエラー
-  url:     ENV.fetch('DATABASE_URL')
-}
+require './models'
 
 before do
   Dotenv.load if development?
