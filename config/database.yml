@@ -8,5 +8,7 @@ development:
   database: s_todo
 
 production:
-  <<: *default
-  url: <%= ENV.fetch("DATABASE_URL") %>
+  adapter: postgresql
+  url: <%= ENV['DATABASE_URL'] %> # RenderのPostgresの接続URL
+  pool: 5
+  encoding: unicode

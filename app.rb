@@ -4,11 +4,20 @@ Bundler.require
 require 'sinatra/reloader' if development?
 
 # Database configuration
-configure do
-  set :database, ENV['DATABASE_URL'] || 'postgres://localhost/kakomon_database'
-end
+# configure do
+#   set :database, ENV['DATABASE_URL'] || 'postgres://localhost/kakomon_database'
+# end
+
+require 'sinatra/activerecord'
+register Sinatra::ActiveRecordExtension
+set :database_file, 'config/database.yml'
 
 require './models'
+
+puts "------------------------------------------"
+puts "RACK_ENV=#{ENV['RACK_ENV']}"
+puts "DATABASE_URL present? #{!ENV['DATABASE_URL'].to_s.empty?}"
+puts "------------------------------------------"
 
 before do
   Dotenv.load if development?
