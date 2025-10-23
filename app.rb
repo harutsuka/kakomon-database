@@ -9,7 +9,7 @@ require 'sinatra'
 puts "RACK_ENV is #{ENV['RACK_ENV'].inspect}"
 puts "----------------------------------"
 require 'sinatra/reloader' if development?
-require './models.rb'
+require 'models.rb'
 
 # ActiveRecordを先に読み込み
 require 'active_record'
