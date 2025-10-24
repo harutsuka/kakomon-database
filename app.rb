@@ -22,10 +22,11 @@ ActiveRecord::Base.establish_connection(db_config)
 if ENV['RACK_ENV'] == 'production'
   begin
     puts "Running migrations..."
-    ActiveRecord::MigrationContext.new('db/migrate').migrate
+    ActiveRecord::MigrationContext.new('db/migrate', ActiveRecord::SchemaMigration).migrate
     puts "Migrations completed successfully!"
   rescue => e
     puts "Migration error: #{e.message}"
+    puts e.backtrace.first(5).join("\n")
   end
 end
 
