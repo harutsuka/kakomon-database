@@ -18,6 +18,17 @@ require 'sinatra/reloader' if development?
 db_config = ENV['DATABASE_URL'] || 'postgresql://localhost/s_todo'
 ActiveRecord::Base.establish_connection(db_config)
 
+# マイグレーションを自動実行（production環境のみ）
+if ENV['RACK_ENV'] == 'production'
+  begin
+    puts "Running migrations..."
+    ActiveRecord::MigrationContext.new('db/migrate').migrate
+    puts "Migrations completed successfully!"
+  rescue => e
+    puts "Migration error: #{e.message}"
+  end
+end
+
 # モデルを読み込み
 require './models'
 
