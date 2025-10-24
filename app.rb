@@ -25,18 +25,6 @@ end
 
 ActiveRecord::Base.establish_connection(db_url)
 
-# マイグレーションを自動実行（production環境のみ）
-if ENV['RACK_ENV'] == 'production'
-  begin
-    puts "Running migrations..."
-    ActiveRecord::MigrationContext.new('db/migrate', ActiveRecord::SchemaMigration).migrate
-    puts "Migrations completed successfully!"
-  rescue => e
-    puts "Migration error: #{e.message}"
-    puts e.backtrace.first(5).join("\n")
-  end
-end
-
 # モデルを読み込み
 require './models'
 
