@@ -5,18 +5,21 @@ require 'bundler/setup'
 # Bundler.require(:default, ENV.fetch('RACK_ENV', 'development').to_sym)
 
 require 'sinatra'
+require 'active_record'
+require 'pg'
+require 'dotenv'
+require 'cloudinary'
 
 puts "RACK_ENV is #{ENV['RACK_ENV'].inspect}"
 puts "----------------------------------"
 require 'sinatra/reloader' if development?
-require 'models.rb'
-
-# ActiveRecordを先に読み込み
-require 'active_record'
 
 # データベース接続を手動で設定
 db_config = ENV['DATABASE_URL'] || 'postgresql://localhost/s_todo'
 ActiveRecord::Base.establish_connection(db_config)
+
+# モデルを読み込み
+require './models'
 
 before do
   Dotenv.load if development?

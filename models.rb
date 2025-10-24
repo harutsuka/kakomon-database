@@ -1,7 +1,4 @@
-require "bundler/setup"
-Bundler.require
-
-ActiveRecord::Base.establish_connection
+# ActiveRecordの接続はapp.rbで既に確立済み
 
 class Post < ActiveRecord::Base
   has_many :images, dependent: :destroy
