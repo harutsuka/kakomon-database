@@ -22,7 +22,7 @@ ActiveRecord::Base.establish_connection(db_config)
 require './models'
 
 before do
-  Dotenv.load if development?
+  Dotenv.load if ENV['RACK_ENV'] == 'development'
   Cloudinary.config do |config|
     config.cloud_name = ENV['CLOUD_NAME']
     config.api_key  = ENV['CLOUDINARY_API_KEY']
