@@ -2,7 +2,7 @@ services:
   - type: web
     name: kakomon-database
     runtime: ruby
-    buildCommand: bundle install && RACK_ENV=production rake db:migrate
+    buildCommand: bundle install
     startCommand: ruby app.rb
     envVars:
       - key: RACK_ENV
