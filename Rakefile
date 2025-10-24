@@ -3,14 +3,13 @@ require 'bundler/setup'
 require 'logger'
 require 'active_record'
 
-# app.rb で establish_connection しているなら先に読み込む
+# app.rb で ActiveRecord::Base.establish_connection 済みの場合
 require './app'
+
+# Sinatra + ActiveRecord 用タスクを読み込み
 require 'sinatra/activerecord/rake'
 
-# ActiveRecordのDBタスク
-require 'active_record/railties/databases.rake'
-
-# DBタスクに必要な設定
+# DB設定
 ActiveRecord::Tasks::DatabaseTasks.env = ENV['RACK_ENV'] || 'production'
 ActiveRecord::Tasks::DatabaseTasks.db_dir = 'db'
 ActiveRecord::Tasks::DatabaseTasks.migrations_paths = ['db/migrate']
@@ -19,10 +18,10 @@ ActiveRecord::Tasks::DatabaseTasks.database_configuration = {
   'development' => { 'url' => ENV['DATABASE_URL'] || 'postgresql://localhost/s_todo' }
 }
 
-# ログが見えると便利
+# ログ
 ActiveRecord::Base.logger = Logger.new($stdout)
 
-# Railsが無いので environment タスクをダミー定義
+# environmentタスク（Railsなしで必要）
 task :environment do
   # no-op
 end
