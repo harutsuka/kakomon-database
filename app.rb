@@ -15,8 +15,15 @@ puts "----------------------------------"
 require 'sinatra/reloader' if ENV['RACK_ENV'] == 'development'
 
 # データベース接続を手動で設定
-db_config = ENV['DATABASE_URL'] || 'postgresql://localhost/s_todo'
-ActiveRecord::Base.establish_connection(db_config)
+db_url = ENV['DATABASE_URL'] || 'postgresql://localhost/s_todo'
+
+# SSL設定を追加（production環境のみ）
+if ENV['RACK_ENV'] == 'production'
+  # URLにsslmodeが含まれていない場合は追加
+  db_url += '?sslmode=require' unless db_url.include?('sslmode')
+end
+
+ActiveRecord::Base.establish_connection(db_url)
 
 # マイグレーションを自動実行（production環境のみ）
 if ENV['RACK_ENV'] == 'production'
