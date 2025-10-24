@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: kakomon-database
+    runtime: ruby
+    buildCommand: bundle install && RACK_ENV=production rake db:migrate
+    startCommand: ruby app.rb
+    envVars:
+      - key: RACK_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: s_todo
+          property: connectionString
+      - key: CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+
+databases:
+  - name: s_todo
+    databaseName: s_todo
+    user: s_todo_user
