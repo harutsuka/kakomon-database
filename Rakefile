@@ -5,6 +5,7 @@ require 'active_record'
 
 # app.rb で establish_connection しているなら先に読み込む
 require './app'
+require 'sinatra/activerecord/rake'
 
 # ActiveRecordのDBタスク
 require 'active_record/railties/databases.rake'
