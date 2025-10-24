@@ -12,7 +12,7 @@ require 'cloudinary'
 
 puts "RACK_ENV is #{ENV['RACK_ENV'].inspect}"
 puts "----------------------------------"
-require 'sinatra/reloader' if development?
+require 'sinatra/reloader' if ENV['RACK_ENV'] == 'development'
 
 # データベース接続を手動で設定
 db_config = ENV['DATABASE_URL'] || 'postgresql://localhost/s_todo'
