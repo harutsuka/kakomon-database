@@ -45,6 +45,7 @@ GEM
       uri
     ostruct (0.6.3)
     pg (1.6.2-arm64-darwin)
+    pg (1.6.2-x86_64-linux)
     pry (0.15.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -79,6 +80,7 @@ GEM
 PLATFORMS
   arm64-darwin-23
   arm64-darwin-24
+  x86_64-linux
 
 DEPENDENCIES
   activerecord (~> 6.1.7, >= 6.1.7.9)
