@@ -1,12 +1,35 @@
+require 'logger'
 require 'bundler/setup'
-Bundler.require
-require 'sinatra/reloader' if development?
 
-require 'sinatra/activerecord'
+# sinatra-activerecordを除外してBundler.require
+# Bundler.require(:default, ENV.fetch('RACK_ENV', 'development').to_sym)
+
+require 'sinatra'
+require 'active_record'
+require 'pg'
+require 'dotenv'
+require 'cloudinary'
+
+puts "RACK_ENV is #{ENV['RACK_ENV'].inspect}"
+puts "----------------------------------"
+require 'sinatra/reloader' if ENV['RACK_ENV'] == 'development'
+
+# データベース接続を手動で設定
+db_url = ENV['DATABASE_URL'] || 'postgresql://localhost/s_todo'
+
+# SSL設定を追加（production環境のみ）
+if ENV['RACK_ENV'] == 'production'
+  # URLにsslmodeが含まれていない場合は追加
+  db_url += '?sslmode=require' unless db_url.include?('sslmode')
+end
+
+ActiveRecord::Base.establish_connection(db_url)
+
+# モデルを読み込み
 require './models'
 
-before do 
-  Dotenv.load
+before do
+  Dotenv.load if ENV['RACK_ENV'] == 'development'
   Cloudinary.config do |config|
     config.cloud_name = ENV['CLOUD_NAME']
     config.api_key  = ENV['CLOUDINARY_API_KEY']
@@ -14,6 +37,9 @@ before do
     config.secure  = true
   end
 end
+
+set :bind, "0.0.0.0"
+set :port, ENV.fetch("PORT", 3000)
 
 helpers do
   def gradeList
@@ -69,7 +95,7 @@ end
       sub_image_url: sub_image_url,
     )
   end
-  
+
   redirect '/'
 end
 
