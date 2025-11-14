@@ -1,0 +1,79 @@
+<div class="modal" id="modal">
+    <div class="modal-container">
+        <div class="modal-content">
+            <form method="post" action="/post" enctype="multipart/form-data">
+                <select name="grade">
+                    <% gradeList.each_with_index do |grade,index| %>
+                        <option value="<%= index %>"><%= grade %></option>
+                    <% end %>
+                </select>
+                <select name="course">
+                    <% courseList.each_with_index do |course,index| %>
+                        <option value="<%= index %>"><%= course %></option>
+                    <% end %>
+                </select>
+                <select name="term">
+                    <% termList.each_with_index do |term,index| %>
+                        <option value="<%= index %>"><%= term %></option>
+                    <% end %>
+                </select>
+                <input type="text" placeholder="科目名" class="subject-select" name="subject_name">
+                
+                <div class="file-select">
+                    <div class="file-selector">
+                        <label class="file-select-button">ファイルを選択
+                            <input type="file" id="fileInput" name="uploaded_image_main[]" accept=".jpg,.png,.pdf" required multiple>
+                        </label>
+                        <ul id="fileList"></ul>
+                    </div>
+<%# 
+                    <p>解答</p>
+                    <div class="file-selector">
+                        <label>ファイルを選択
+                            <input type="file" name=uploaded_image_answer accept=".jpg, .png, .pdf" >
+                        </label>
+                    </div> %>
+                </div>
+                <div class="modal-buttons">
+                    <button type="submit" class="button modal-button">投稿</button>
+                    <button type="button" id="closeModal" class="button modal-button">閉じる</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+            
+<script>
+  const modal = document.getElementById('modal');
+  document.getElementById("upload_widget").addEventListener("click", function() {
+      modal.style.display = 'block';
+  });
+  document.getElementById('closeModal').addEventListener("click", function() {
+      modal.style.display = 'none';
+  });
+  modal.addEventListener('click', (event) => {
+      if(event.target.closest('.modal-container') == null) {
+          modal.style.display = 'none';
+      }
+  });
+
+  // 👇 fileInputがちゃんと取れるようになる
+  const fileInput = document.getElementById('fileInput');
+  const fileList = document.getElementById('fileList');
+
+  fileInput.addEventListener('change', () => {
+    fileList.innerHTML = ''; // 前の選択をクリア
+    const files = Array.from(fileInput.files);
+
+    files.forEach(file => {
+      const li = document.createElement('li');
+      const link = document.createElement('a');
+      link.textContent = file.name;
+      link.href = URL.createObjectURL(file);
+      link.target = '_blank'; // 新しいタブで開く
+      li.appendChild(link);
+      fileList.appendChild(li);
+    });
+  });
+
+</script>

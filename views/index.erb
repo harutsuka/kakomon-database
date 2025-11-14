@@ -1,1 +1,42 @@
-<h1>Hello, World!</h1>
+<link rel="stylesheet" href="/styles/index.css" type="text/css">
+
+<div class="body">
+    <div class="filter-container">
+        <form method="get" action="/">
+            <select name="grade" class="filter">
+                <% gradeList.each_with_index do |grade, index| %>
+                    <option value="<%= index %>" 
+                    <% if @posts.any? && index == @posts[0].grade %>
+                        selected
+                    <% end %>><%= grade %></option>
+                <% end %>
+            </select>
+            <select name="course" class="filter">
+                <% courseList.each_with_index do |course, index| %>
+                    <option value="<%= index %>" 
+                    <% if @posts.any? && index == @posts[0].course %>
+                        selected
+                    <% end %>><%= course %></option>
+                <% end %>
+            </select>
+            <select class="filter" name="term">
+                <% termList.each_with_index do |term,index| %>
+                    <option value="<%= index %>" 
+                    <% if @posts.any? && index == @posts[0].term %>
+                        selected
+                    <% end %>><%= term %></option>
+                <% end %>
+            </select>
+            <button type="submit" class="button">フィルタ</button>
+        </form>
+    </div>
+
+    <% @posts.each do |post| %>
+        <a href="/id/<%= post.id %>"><div class="posts"><%= gradeList[post.grade.to_i] %> <% if post.course.to_i != 0 %><%= courseList[post.course.to_i] %><% end %> <%= termList[post.term.to_i] %> <%= post.subject_name %></div></a>
+    <% end %>
+
+    <div class="button-container">
+        <button id="upload_widget" class="button upload-button">過去問を追加する</button>
+    </div>
+    
+    <%= erb :"partials/_post_form" %>

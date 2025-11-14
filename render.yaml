@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: kakomon-database
+    runtime: ruby
+    buildCommand: bundle install
+    startCommand: ruby app.rb
+    envVars:
+      - key: RACK_ENV
+        value: production
+      - key: CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+
+databases:
+  - name: s_todo
+    databaseName: s_todo
+    user: s_todo_user
