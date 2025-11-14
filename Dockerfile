@@ -1,5 +1,5 @@
 # Ruby 3.3.0 の公式イメージをベースに使用（OpenSSL対応）
-FROM ruby:3.3.0
+FROM ruby:3.2.3
 
 # 必要なパッケージをインストール
 # - build-essential: C拡張をビルドするために必要（bcrypt, pgなど）
