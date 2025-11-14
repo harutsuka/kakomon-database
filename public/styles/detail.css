@@ -1,0 +1,14 @@
+.body {
+  padding: 0 8%;
+  margin-top: 30px;
+}
+.delete-button {
+  height: 45px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #dc143c;
+  border-style: none;
+  border-radius: 6px;
+  padding: 0 15px;
+}
