@@ -10,27 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_02_14_150002) do
+ActiveRecord::Schema.define(version: 2025_11_20_133902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "categories", force: :cascade do |t|
-    t.string "category_name"
-  end
-
   create_table "images", force: :cascade do |t|
-    t.string "main_image_url"
     t.integer "post_id"
+    t.string "main_image_url"
     t.string "sub_image_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string "subject_name"
-    t.integer "term"
+    t.string "title"
+    t.text "body"
     t.integer "grade"
-    t.string "memo"
     t.integer "course"
+    t.integer "term"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "subject_name"
   end
 
 end
