@@ -98,7 +98,7 @@ end
     subject_name: params[:subject_name],
     term: params[:term],
     grade: params[:grade],
-    memo: params[:memo],
+    # memo: params[:memo],
     course: params[:course]
   )
 
