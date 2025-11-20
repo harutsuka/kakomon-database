@@ -14,6 +14,8 @@ RUN apt-get update -qq && \
   postgresql-client && \
   rm -rf /var/lib/apt/lists/*
 
+RUN gem update --system
+
 # bundler を Gemfile.lock に合わせたバージョンでインストール
 RUN gem install bundler:2.5.22
 
