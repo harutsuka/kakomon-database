@@ -20,9 +20,10 @@
   font-weight: bold;
   color: #fff;
   background-color: #0067c0;
-  border-style: none;
+  border: 3px solid transparent;
   border-radius: 6px;
   padding: 0 15px;
+  cursor: pointer;
 }
 .button:hover {
   color: #0067c0;
@@ -35,10 +36,14 @@
   justify-content: center;
 }
 .upload-button {
-  position: absolute;
-  margin-top: 15px;
-  height: 60px;
-  font-size: 30px;
+  position: fixed;
+  bottom: 36px;
+  right: 36px;
+  width: 64px;
+  height: 64px;
+  font-size: 32px;
+  border-radius: 50%;
+  z-index: 1000;
 }
 .modal {
   display: none;
