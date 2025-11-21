@@ -103,20 +103,16 @@ select {
   width: 15%;
 }
 .filter {
-  position: relative;
-  right: 0;
-  margin: 0 10px 10px 0;
+  border: #e6e6e6 solid 1px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
-label {
-  background-color: #0067c0;
-  color: #efefef;
-  border-radius: 8px;
-  padding: 3%;
-  font-weight: bold;
-  font-size: 20px;
-}
-label input {
-  display: none;
+.filter label {
+  color: #646464;
+  display: block;
+  margin-bottom: 8px;
 }
 
 .memo {
@@ -154,6 +150,41 @@ p {
 }
 
 #fileList a:hover {
-  color: #0c47a1; /* ホバーで濃い青に */
-  text-decoration-thickness: 2px; /* 下線を太く */
+  color: #0c47a1;
+  text-decoration-thickness: 2px;
+}
+
+.filter-label {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 10px;
+  color: #4b4b4b;
+}
+.filter-name {
+  margin: 0 0 8px 0;
+  font-weight: bold;
+  color: #646464;
+}
+
+.file-select-button {
+  background-color: #0067c0;
+  color: #e6e6e6;
+  border-radius: 8px;
+  padding: 3%;
+  font-weight: bold;
+  font-size: 20px;
+}
+.file-select-button input {
+  display: none;
+}
+.filter-button {
+  height: 42px;
+  font-size: 18px;
+  padding: 0 10px;
+}
+.filter-spacer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
 }

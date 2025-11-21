@@ -3,31 +3,38 @@
 <div class="body">
     <div class="filter-container">
         <form method="get" action="/">
-            <select name="grade" class="filter">
+            <div class="filter-spacer">
+                <p class="filter-label">フィルター</p>
+                <button type="submit" class="button filter-button">🔍 絞り込み</button>
+            </div>
+
+            <div class="filter">
+                <p class="filter-name">学年</p>
                 <% gradeList.each_with_index do |grade, index| %>
-                    <option value="<%= index %>" 
+                    <label><input type="radio" name="grade" value="<%= index %>"
                     <% if @posts.any? && index == @posts[0].grade %>
-                        selected
-                    <% end %>><%= grade %></option>
+                        checked
+                    <% end %>><%= grade %></label>
                 <% end %>
-            </select>
-            <select name="course" class="filter">
+            </div>
+            <div class="filter">
+                <p class="filter-name">コース</p>
                 <% courseList.each_with_index do |course, index| %>
-                    <option value="<%= index %>" 
+                    <label><input type="checkbox" name="course[]" value="<%= index %>"
                     <% if @posts.any? && index == @posts[0].course %>
-                        selected
-                    <% end %>><%= course %></option>
+                        checked
+                    <% end %>><%= course %></label>
                 <% end %>
-            </select>
-            <select class="filter" name="term">
+            </div>
+            <div class="filter">
+                <p class="filter-name">種別</p>
                 <% termList.each_with_index do |term,index| %>
-                    <option value="<%= index %>" 
+                    <label><input type="radio" name="term" value="<%= index %>"
                     <% if @posts.any? && index == @posts[0].term %>
-                        selected
-                    <% end %>><%= term %></option>
+                        checked
+                    <% end %>><%= term %></label>
                 <% end %>
-            </select>
-            <button type="submit" class="button">🔍 検索</button>
+            </div>
         </form>
     </div>
     <div class="posts-container">
