@@ -1,16 +1,24 @@
 <link rel="stylesheet" href="/styles/detail.css" type="text/css">
 
 <div class="body">
+    <a href="/">← 戻る</a>
+    <div class="post-header">
+        <h3><%= gradeList[@post.grade.to_i] %> <% if @post.course.to_i != 0 %><%= courseList[@post.course.to_i] %><% end %> <%= termList[@post.term.to_i] %> <%= @post.subject_name %></h3>
+    </div>
     <% @post.images.each do |image| %>
-        <object data="<%= image.main_image_url %>" width="100%" style="height:auto; min-height:1000px;">
-            <iframe src="<%= image.main_image_url %>" width="100%" height="100%">
+        <object data="<%= image.main_image_url %>" width="100%" class="image-object">
+            <iframe src="<%= image.main_image_url %>" width="100%" height="100%"></iframe>
         </object>
     <% end %>
     
-    <h3>解答</h3>
-    <% @post.images.each do |image| %>
-        <object data="<%= image.sub_image_url %>" width="100%" style="height:auto; min-height:500px;"></object>
-    <% end %>
+    <%# <h3>解答</h3> %>
+    <% if false %>
+  <h3>解答</h3>
+  <% @post.images.each do |image| %>
+      <object data="<%= image.sub_image_url %>" width="100%" style="height:auto; min-height:500px;"></object>
+  <% end %>
+<% end %>
+
 
     <form method="post" action="/id/<%= @post.id %>/delete">
         <button type="submit" class="delete-button">この投稿を削除</button>
