@@ -8,7 +8,7 @@ li {
 .header {
   display: flex;
   position: relative;
-  padding: 20px;
+  padding-top: 20px;
 }
 .title {
   font-size: 30px;
