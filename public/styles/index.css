@@ -1,6 +1,8 @@
 .body {
-  padding: 0 6%;
+  padding: 0 3%;
   margin-top: 30px;
+  display: flex;
+  flex-direction: row;
 }
 .posts {
   height: 60px;
@@ -92,9 +94,13 @@ select {
   border-radius: 5px;
   height: 45px;
 }
+.posts-container {
+  width: 85%;
+  margin-left: 20px;
+}
 .filter-container {
   display: flex;
-  width: 100%;
+  width: 15%;
 }
 .filter {
   position: relative;
